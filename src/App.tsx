@@ -50,7 +50,7 @@ function App() {
     if (outputFrequency !== 0) {
       timer.startTimer(displayNumbers, outputFrequency);
     }
-  }, [outputFrequency])
+  }, [outputFrequency, timer])
 
   return (
     <>

@@ -2,13 +2,13 @@ export class Timer{
     private interval: number;
     private startTime: Date;
     private timeRemaining: number;
-    private intervalID: number;
+    private intervalID: ReturnType<typeof setInterval> | undefined;
 
     public constructor() {
         this.interval = 0;
         this.startTime = new Date();
         this.timeRemaining = 0
-        this.intervalID = 0
+        this.intervalID = undefined;
     }
     
     public startTimer(functionToRun: () => void, interval: number) {
