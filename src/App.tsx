@@ -42,6 +42,8 @@ function App() {
   const handleQuit = () => {
     timer.stopTimer();
     setOutputFrequency(0);
+    setNumberInput(0);
+    setFrequencyText('');
     numberFrequency.current.clear();
     alert('Thanks for playing, press ok to exit.');
   }
