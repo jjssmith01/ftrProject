@@ -9,6 +9,28 @@ function App() {
   const numberFrequency = useRef(new Map<number, number>());
   const [frequencyText, setFrequencyText] = useState('');
 
+  //Generate first 1000 fibonacci numbers into set.
+  const fibbonaciList = useRef(new Set());
+
+  const calculateFibonacci = () => {
+    let a = 0;
+    let b = 1;
+
+    fibbonaciList.current.add(a);
+    fibbonaciList.current.add(b);
+
+    for (let i = 2; i <= 1000; i++) {
+      const c = a + b;
+      a = b;
+      b = c;
+      fibbonaciList.current.add(c);
+    }
+
+    return b;
+  }
+  
+  calculateFibonacci();
+
   //useRef to stop timer restarting on new render.
   const timerRef = useRef<Timer | null>(null);
   if (!timerRef.current) {
@@ -30,6 +52,9 @@ function App() {
 
   const handleSubmit = () => {
     if (!isNaN(numberInput)){
+      if (fibbonaciList.current.has(numberInput)){
+        window.alert('FIB!');
+      }
       const currentFrequency = numberFrequency.current.get(numberInput);
       if (currentFrequency){
         numberFrequency.current.set(numberInput, currentFrequency + 1);
